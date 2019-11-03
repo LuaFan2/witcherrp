@@ -1,8 +1,12 @@
 local PLAYER = FindMetaTable( "Player" )
 
 function InitCharacter(ply, name, model)
-	rp.sql.CreateCharacter(ply, name, model)
-	InitPlayerVars(ply)
+	q = rp.sql.CreateCharacter(ply, name, model)
+	if q then
+		InitPlayerVars(ply)
+		return true
+	end
+	return false
 end
 
 function InitPlayerVars(ply)

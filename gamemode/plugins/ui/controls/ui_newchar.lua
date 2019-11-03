@@ -89,7 +89,16 @@ function PANEL:Init()
 		net.WriteString(plyModel)
 		net.SendToServer()
 		
-		self:Remove()
+		net.Receive("witcher.character.Result", function(len, ply) 
+			result = net.ReadBool()
+			
+			if not result then
+				alert = ui.Create("ui_walert", self)
+				alert:SetText("Character name entered is not available")
+			else
+				self:Remove()
+			end
+		end)
 	end
 end
 
