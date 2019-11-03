@@ -29,7 +29,7 @@ function PANEL:Close()
 end
 
 function PANEL:Paint(w, h)
-	surface.SetMaterial(Material( "main/bg.jpg" ))
+	surface.SetMaterial(Material( "main/bg.jpg" )) -- surface.GetTextureID("Brick/brickfloor001a")
 	surface.SetDrawColor( 255, 255, 255, 255 )
 	surface.DrawTexturedRect(0, 0, w, h)
 	

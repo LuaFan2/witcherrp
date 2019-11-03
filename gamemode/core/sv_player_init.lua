@@ -1,11 +1,17 @@
 local PLAYER = FindMetaTable( "Player" )
 
-hook.Add( "PlayerInitialSpawn", "SetPlayerData", function( ply )
-	InitPlayer(ply)
-end )
+timer.Create( 'witcher_timeplayed', 1, 0, function()
+	for k,v in pairs( player.GetAll() ) do
+		v:AddTime()
+	end
+end)
+
+--hook.Add( "PlayerInitialSpawn", "SetPlayerData", function( ply )
+--	InitPlayer(ply)
+-- end )
 
 hook.Add( "Initialize", "initalize_sql", function()
-	rp.sql.CreateUserTable()
+	rp.sql.CreateCharacterTable()
 end)
 
 hook.Add( "PlayerDisconnected", "playerdisconnected", function(ply) ply:SaveTime() end)

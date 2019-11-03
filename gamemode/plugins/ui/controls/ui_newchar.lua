@@ -49,22 +49,48 @@ vgui.Register("ui_newchar_blank", PANEL, 'Panel')
 
 PANEL = {}
 
+local plyModel = rp.Config.StartModels[math.random(#rp.Config.StartModels)]
+
 function PANEL:Init()	
 	self:SetSize(ScrW(), ScrH())
 	self:MakePopup()
 	
-	f = ui.Create("ui_newchar_field", self)
+	local f = ui.Create("ui_newchar_field", self)
 	f:Center()
 	local x, y = f:GetPos()
 	f:SetPos(x, 0)
 	f:SetData("Name")
 	
-	model = ui.Create("DModelPanel", self)
-	model:SetSize(400, 800)
+	local model = ui.Create("DModelPanel", self)
+	model:SetSize(400, 600)
 	model:Center()
 	model:SetDirectionalLight( BOX_TOP, Color( 255, 255, 255 ) )
 	model:SetDirectionalLight( BOX_FRONT, Color( 255, 255, 255 ) )
-	model:SetModel(LocalPlayer():GetModel())
+	model:SetAmbientLight( Color( 255, 0, 0, 255 ) )
+	model:SetModel(plyModel)
+	
+	model.LayoutEntity = function() return end
+	
+	model.OnMousePressed = function() 
+		plyModel = rp.Config.StartModels[math.random(#rp.Config.StartModels)]
+		model:SetModel(plyModel)
+	end
+	
+	local button = ui.Create("ui_wbutton", self)
+	button:SetText(v)
+	button:Center()
+	button:SetText("Create character")
+	local x, y = button:GetPos()
+	button:SetPos(x, ScrH()*0.95)
+	
+	button.onClick = function()
+		net.Start("witcher.character.Init")
+		net.WriteString(f:GetValue())
+		net.WriteString(plyModel)
+		net.SendToServer()
+		
+		self:Remove()
+	end
 end
 
 function PANEL:Paint(w, h)
