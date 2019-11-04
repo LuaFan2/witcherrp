@@ -18,3 +18,7 @@ Status: In Progress
   - Bow mastery
 - Faction system
   - Territorial wars
+
+# Libraries used:
+- netwrapper (https://github.com/Mista-Tea/netwrapper) for networking
+- FastIncludes (https://github.com/SkyAngeLoL/FastIncludes)
