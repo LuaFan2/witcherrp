@@ -1,10 +1,10 @@
 local PANEL = {}
 
 local panel
-local alert
+local atext
 
 function PANEL:SetText(text)
-	alert:SetText(text)
+	atext = text
 end
 
 function PANEL:Init()
@@ -13,9 +13,6 @@ function PANEL:Init()
 	
 	panel = self
 	
-	alert = ui.Create("DLabel", panel)
-	alert:SetFont("ui.witcher")
-	alert:Center()
 	timer.Create( 'alerttimer'..math.random(10), 2, 1, function()
 		self:Close()
 	end)
@@ -28,6 +25,8 @@ end
 function PANEL:Paint(w, h)
 	surface.SetDrawColor( 0, 0, 0, 200 )
 	surface.DrawRect(0, 0, w, h)
+	
+	draw.SimpleTextOutlined(atext, 'ui.witcher', w*0.5, h * 0.5, ui.col.White, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, ui.col.Black)
 end
 
 vgui.Register('ui_walert', PANEL, 'Panel')

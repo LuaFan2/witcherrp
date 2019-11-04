@@ -1,5 +1,5 @@
 GM.Version = "0.0.1"
-GM.Name = "RpBox"
+GM.Name = "WitcherRP"
 GM.Author = "Deleted"
 
 DeriveGamemode("sandbox")

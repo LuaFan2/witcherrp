@@ -37,22 +37,10 @@ vgui.Register("ui_newchar_field", PANEL, 'Panel')
 
 PANEL = {}
 
-function PANEL:Init()
-	
-end
-
-function PANEL:Paint(w, h)
-	
-end
-
-vgui.Register("ui_newchar_blank", PANEL, 'Panel')
-
-PANEL = {}
-
 local plyModel = rp.Config.StartModels[math.random(#rp.Config.StartModels)]
 
-function PANEL:Init()	
-	self:SetSize(ScrW(), ScrH())
+function PANEL:Init()
+    self:SetSize(ScrW(), ScrH())
 	self:MakePopup()
 	
 	local f = ui.Create("ui_newchar_field", self)
@@ -81,7 +69,7 @@ function PANEL:Init()
 	button:Center()
 	button:SetText("Create character")
 	local x, y = button:GetPos()
-	button:SetPos(x, ScrH()*0.95)
+	button:SetPos(x, self:GetTall()*0.95)
 	
 	button.onClick = function()
 		net.Start("witcher.character.Init")
@@ -93,7 +81,7 @@ function PANEL:Init()
 			result = net.ReadBool()
 			
 			if not result then
-				alert = ui.Create("ui_walert", self)
+				local alert = ui.Create("ui_walert", self)
 				alert:SetText("Character name entered is not available")
 			else
 				self:Remove()

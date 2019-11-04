@@ -45,7 +45,7 @@ function PANEL:Init()
 	self:SetAlpha(0)
 	self:FadeIn(0.2)
 
-	hook('Think', self, function()
+	hook.Add('Think', self, function()
 		if self.HandleMovement then
 			self:HandleMovement()
 		end

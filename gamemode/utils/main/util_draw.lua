@@ -1,6 +1,20 @@
 local draw = draw or {}
 
+local blur = Material("pp/blurscreen")
 local mat_white = Material("vgui/white")
+
+function draw.Blur(panel, amount)
+    local x, y = panel:LocalToScreen(0, 0)
+    local scrW, scrH = ScrW(), ScrH()
+    surface.SetDrawColor(255, 255, 255)
+    surface.SetMaterial(blur)
+    for i = 1, 3 do
+        blur:SetFloat("$blur", (i / 3) * (amount or 6))
+        blur:Recompute()
+        render.UpdateScreenEffectTexture()
+        surface.DrawTexturedRect(x * -1, y * -1, scrW, scrH)
+    end
+end
 
 function draw.SimpleLinearGradient(x, y, w, h, startColor, endColor, horizontal)
 	draw.LinearGradient(x, y, w, h, { {offset = 0, color = startColor}, {offset = 1, color = endColor} }, horizontal)
@@ -67,6 +81,14 @@ function draw.LinearGradient(x, y, w, h, stops, horizontal)
 		mesh.AdvanceVertex()
 	end
 	mesh.End()
+end
+
+function draw.OutlinedBox(x, y, w, h, col, bordercol)
+	surface.SetDrawColor(col)
+	surface.DrawRect(x + 1, y + 1, w - 2, h - 2)
+	
+	surface.SetDrawColor(bordercol)
+	surface.DrawOutlinedRect(x, y, w, h)
 end
 
 function draw.SOutlinedBox( x, y, w, h, thickness, clr )
