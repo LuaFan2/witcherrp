@@ -1,6 +1,6 @@
 # witcherrp
-Garry's Mod (gmod) gamemode based on rpbox (mine private repository)
-Status: In Progress
+Garry's Mod (gmod) gamemode based on rpbox (mine private repository)<br />
+Status: In Progress (cloning before the first release  and from the dev branch will not lead to anything good)
 
 ## Planned:
 - Character system
