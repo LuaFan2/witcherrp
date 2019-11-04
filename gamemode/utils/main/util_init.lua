@@ -9,6 +9,14 @@ function InitCharacter(ply, name, model)
 	return false
 end
 
+function LoginCharacter(ply)
+    if ply:GetSQLValue("name") then
+        InitPlayerVars(ply)
+        return true
+    end
+    return false
+end
+
 function InitPlayerVars(ply)
 	name = ValidateName(ply:GetSQLValue("name"))
     money = ply:GetSQLValue("money")

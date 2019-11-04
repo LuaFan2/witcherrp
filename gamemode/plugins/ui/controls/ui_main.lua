@@ -2,7 +2,23 @@ local PANEL = {}
 
 local panel
 
-local buttons = {["Load game"] = function() print("Yes") end, ["New game"] = function() PANEL:Close() ui.Create("ui_newchar") end, ["Credits"] = function() end, ["Exit"] = function() LocalPlayer():ConCommand("disconnect" ) end}
+local function LoadPlayer()
+    net.Start("witcher.character.Login")
+	net.SendToServer()
+	
+	net.Receive("witcher.character.Result", function(len, ply) 
+		result = net.ReadBool()
+			
+		if not result then
+			local alert = ui.Create("ui_walert", self)
+			alert:SetText("Character not found")
+		else
+			panel:Remove()
+		end
+	end)
+end
+
+local buttons = {["Load game"] = function() LoadPlayer() end, ["New game"] = function() PANEL:Close() ui.Create("ui_newchar") end, ["Credits"] = function() end, ["Exit"] = function() LocalPlayer():ConCommand("disconnect" ) end}
 local bSort = {"Load game", "New game", "Credits", "Exit"}
 
 function PANEL:Init()

@@ -4,10 +4,11 @@ Status: In Progress
 
 ## Planned:
 - Character system
-  - Loading
-  - Creation
+  - Loading (✓)
+  - Creation (✓)
   - Removal
-  - Statistics
+  - Profile
+- HUD
 - Menus
   - F4 menu
   - Tab menu
