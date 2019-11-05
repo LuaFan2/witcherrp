@@ -16,7 +16,7 @@ if (SERVER) then
 	end
 
 	function GM:PlayerSpawnObject(client, model, skin)
-		if (!client:IsAdmin() and PROP_BLACKLIST[model:lower()]) then
+		if (!client:IsAdmin() and rp.Config.PropBlacklist[model:lower()]) then
 			return false
 		end
 		return true
