@@ -12,7 +12,9 @@ function getJobTable()
 end
 
 function PLAYER:GetJob()
-    getJobTable()
+    if CLIENT then
+        getJobTable()
+    end
 	return rp.Jobs[self:GetNetVar("Job")]
 end
 
