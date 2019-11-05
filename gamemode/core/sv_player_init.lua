@@ -6,10 +6,6 @@ timer.Create( 'witcher_timeplayed', 1, 0, function()
 	end
 end)
 
---hook.Add( "PlayerInitialSpawn", "SetPlayerData", function( ply )
---	InitPlayer(ply)
--- end )
-
 hook.Add( "Initialize", "initalize_sql", function()
 	rp.sql.CreateCharacterTable()
 end)
