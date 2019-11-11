@@ -12,6 +12,10 @@ function PLAYER:GetTime()
 	return tonumber(self:GetNetVar("Time", 0))
 end
 
+function PLAYER:GetColor()
+    return Color(0,0,0)
+end
+
 function PLAYER:CanAfford(c)
 	if self:GetMoney() >= c then return true end
 	return false

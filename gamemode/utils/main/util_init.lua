@@ -27,7 +27,4 @@ function InitPlayerVars(ply)
 	ply:SetName(name)
 	ply:SetMoney(money)
 	ply:SetTime(utime)
-	
-	ply:SetNetVar( "Job", 1 )
-	ply:SetNetVar("Gunlicense", false)
 end

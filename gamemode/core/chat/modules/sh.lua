@@ -56,10 +56,10 @@ if CLIENT then
 		local ply = LocalPlayer()
 		local mtype = net.ReadInt(32)
 		if mtype == 1 then
-			chat.AddText(ply:GetJobColor(), ply:Nick() .. ": ", rp.Config.Chat.TextColor, str )
+			chat.AddText(ply:GetColor(), ply:GetName() .. ": ", rp.Config.Chat.TextColor, str )
 		end
 		if mtype == 2 then
-			chat.AddText(rp.Config.Chat.ActionColor, ply:Nick() .. " " .. str )
+			chat.AddText(rp.Config.Chat.ActionColor, ply:GetName() .. " " .. str )
 		end
     end
     net.Receive( "ChatMessage", ChatMsg )
